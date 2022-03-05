@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-section"><form method="POST" action="{{ url_for('car_register') }}">{{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Car register</legend>
+        <div class="form-group">
+            {{ form.car_brand.label(class="form-control-label") }}
+            {% if form.car_brand.errors %}
+                {{ form.car_brand(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.car_brand.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.car_brand(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.model.label(class="form-control-label") }}
+            {% if form.model.errors %}
+                {{ form.model(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.model.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.model(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.years.label(class="form-control-label") }}
+            {% if form.years.errors %}
+                {{ form.years(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.years.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.years(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.engine.label(class="form-control-label") }}
+            {% if form.engine.errors %}
+                {{ form.engine(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.engine.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.engine(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.plate.label(class="form-control-label") }}
+            {% if form.plate.errors %}
+                {{ form.plate(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.plate.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.plate(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.vin.label(class="form-control-label") }}
+            {% if form.vin.errors %}
+                {{ form.vin(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.vin.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.vin(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form></div>
+{% endblock %}

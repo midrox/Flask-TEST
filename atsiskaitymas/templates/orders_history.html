@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if cars_history %}
+<legend class= "mb-4">Orders history</legend>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Description</th>
+            <th scope="col" class="text-center">Time</th>
+            <th scope="col" class="text-center">Status</th>
+            <th scope="col" class="text-center">Price</th>
+        </tr>
+    </thead>
+{% for car_history in cars_history %}<tr>
+    <td class="text-center">{{ car_history.description }}</td>
+    <td class="text-center">
+        {% if car_history.registration_time %}
+            {{ datetime.strftime(car_history.registration_time, "%Y-%m-%d %H:%M:%S") }}
+        {% endif %}
+    </td>
+    <td class="text-center">{{ car_history.status }}</td>
+    <td class="text-center">{{ car_history.price }}</td>
+</tr>{% endfor %}
+</table>
+{% endif %}
+{% endblock content %}

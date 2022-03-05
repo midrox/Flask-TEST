@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if visi_automobiliai %}
+<legend class= "mb-4">My cars</legend>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">VIN</th>
+            <th scope="col" class="text-center">Car registration time</th>
+            <th scope="col" class="text-center">Model</th>
+            <th scope="col" class="text-center">License plate</th>
+            <th scope="col" class="text-center">Car brand</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+{% for automobilis in visi_automobiliai.items %}<tr>
+    <th scope="row">{{ automobilis.vin }}</th>
+    <td class="text-center">{{ datetime.strftime(automobilis.registration_time, "%Y-%m-%d %H:%M:%S")}}</td>
+    <td class="text-center">{{ automobilis.model }}</td>
+    <td class="text-center">{{ automobilis.plate}}</td>
+    <td class="text-center">{{ automobilis.car_brand }}</td>
+    <th scope="row"><a role="button" class="btn btn-primary float-right" href="{{url_for('repair', car_id=automobilis.id)}}">Register defect</a></th>
+    <th scope="row"><a role="button" class="btn btn-secondary float-right" href="{{url_for('orders_history', car_id=automobilis.id)}}">Order history</a></th>
+</tr>{% endfor %}
+</table>
+{% for page_num in visi_automobiliai.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+        {% if visi_automobiliai.page == page_num %}
+            <a class="btn btn-info mb-4" href="{{ url_for('all_cars', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+            <a class="btn btn-outline-info mb-4" href="{{ url_for('all_cars', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+{% endfor %}
+{% endif %}
+{% endblock content %}
